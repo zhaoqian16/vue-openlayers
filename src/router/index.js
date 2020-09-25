@@ -14,6 +14,14 @@ import LoadBasicMap from '@/components/multiData/loadBasicMap'
 import LoadOpenData from '@/components/multiData/loadOpenData'
 import LoadPublicMap from '@/components/multiData/loadPublicMap'
 import LoadTiandituMap from '@/components/multiData/loadTiandituMap'
+import OverLayerMaps from '@/components/multiData/overLayerMaps'
+import CanvasTiles from '@/components/multiData/canvasTiles'
+
+import DrawFeatures from '@/components/graphicDraw/drawFeatures'
+import FeaturesStyle from '@/components/graphicDraw/featuresStyle'
+import ModifyFeatures from '@/components/graphicDraw/modifyFeatures'
+import DrawFreehand from '@/components/graphicDraw/drawFreehand'
+import SaveFeatures from '@/components/graphicDraw/saveFeatures';
 
 Vue.use(Router)
 
@@ -34,6 +42,13 @@ export default new Router({
     { path: '/loadBasicMap', name: 'loadBasicMap', component: LoadBasicMap},
     { path: '/loadOpenData', name: 'loadOpenData', component: LoadOpenData},
     { path: '/loadPublicMap', name: 'loadPublicMap', component: LoadPublicMap},
-    { path: '/loadTiandituMap', name: 'loadTiandituMap', component: LoadTiandituMap}
+    { path: '/loadTiandituMap', name: 'loadTiandituMap', component: LoadTiandituMap},
+    { path: '/overLayerMaps', name: 'overLayerMaps', component: OverLayerMaps},
+    { path: '/canvasTiles', name: 'canvasTiles', component: CanvasTiles},
+    { path: '/drawFeatures', name: 'drawFeatures', component: DrawFeatures},
+    { path: '/featuresStyle', name: 'featuresStyle', component: FeaturesStyle},
+    { path: '/modifyFeatures', name: 'modifyFeatures', component: ModifyFeatures},
+    { path: '/drawFreehand', name: 'drawFreehand', component: DrawFreehand},
+    { path: '/saveFeatures', name: 'saveFeatures', component: SaveFeatures}
   ]
 })
