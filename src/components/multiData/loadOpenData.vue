@@ -143,7 +143,8 @@ export default {
         'GeometryCollection': geometryCollectionStyle,
         'Circle': circleStyle
       }
-    }
+    },
+    
   }
 }
 </script>

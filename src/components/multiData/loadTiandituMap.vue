@@ -1,7 +1,7 @@
 <template>
   <div>
     <Map></Map>
-    <el-select v-model="type" class="map-switcher" @change="loadMap2">
+    <el-select v-model="type" class="map-switcher" @change="loadMap3">
       <el-option label="矢量" value="vec"></el-option>
       <el-option label="影像" value="img"></el-option>
       <el-option label="矢量注记" value="cva"></el-option>
@@ -13,11 +13,10 @@
 <script>
 import Map from '../map'
 import TileLayer from 'ol/layer/Tile';
-import TileImage from 'ol/source/TileImage';
 import TileGrid from 'ol/tilegrid/TileGrid';
 import * as prj from 'ol/proj';
 import * as Extent from 'ol/extent';
-import WMTS from 'ol/source/WMTS';
+import {WMTS, XYZ, TileImage} from 'ol/source';
 import WMTSTileGrid from 'ol/tilegrid/WMTS';
 
 
@@ -34,11 +33,17 @@ export default {
         img: `http://t${Math.round(Math.random()*7)}.tianditu.gov.cn/img_c/wmts?`,
         cia: `http://t${Math.round(Math.random()*7)}.tianditu.gov.cn/cia_c/wmts?`
       },
-      layer: null
+      layer: null,
+      url3: {
+        vec: `http://t${Math.round(Math.random()*7)}.tianditu.gov.cn/DataServer?T=vec_c&x={x}&y={y}&l={z}`,
+        cva: `http://t${Math.round(Math.random()*7)}.tianditu.gov.cn/DataServer?T=cva_c&x={x}&y={y}&l={z}`,
+        img: `http://t${Math.round(Math.random()*7)}.tianditu.gov.cn/DataServer?T=img_c&x={x}&y={y}&l={z}`,
+        cia: `http://t${Math.round(Math.random()*7)}.tianditu.gov.cn/DataServer?T=cia_c&x={x}&y={y}&l={z}`
+      }
     }
   },
   mounted () {
-    this.loadMap2(this.type)
+    this.loadMap3()
   },
   methods: {
     /**
@@ -61,6 +66,7 @@ export default {
       let extent = [-180, -90, 180, 90]
       let tileSize = 256
       this.layer = new TileLayer({
+        className: this.type,
         source: new TileImage({
           attributions: ['Copyright: &copy; 2015 Tianditu, i-cubed, GeoEye'],
           tileUrlFunction: (tileCoord, pixel, projection) => {
@@ -100,6 +106,11 @@ export default {
       }
       return resolutions
     },
+    /**
+     * @description: TileLayer + WMTS 方式加载天地图地图 =========== 一加载会崩溃
+     * @param {type} 
+     * @return {type} 
+     */
     loadMap2 () {
       const map = this.$children[0].map
       let layers = map.getLayers()
@@ -112,33 +123,35 @@ export default {
           item.setVisible(false)
         }
       })
-      let extent = Extent.getTopLeft(prj.get('EPSG:4326').getExtent())
+      let extent = prj.get('EPSG:4326').getExtent()
       let tileSize = 256
       let key = '76892c38deab957e65556e5824ca53e9'
-      this.layer = new TileLayer({
-        source: new WMTS({
-          attributions: ['Copyright: &copy; 2015 Tianditu, i-cubed, GeoEye'],
-          url: `${this.url[this.type]}&tk=${key}`,
-          layer: this.type,
-          style: 'default',
-          matrixSet: 'c',
-          format: 'tiles',
-          wrapX: true,
-          tileGrid: new WMTSTileGrid({
-            origin: extent,
-            resolutions: this.getResolutions2(extent, tileSize).resolutions,
-            matrixIds: this.getResolutions2(extent, tileSize).matrixIds
-          })
+      const source = new WMTS({
+        url: `${this.url[this.type]}&tk=${key}`,
+        layer: this.type,
+        style: 'default',
+        matrixSet: 'c',
+        format: 'tiles',
+        wrapX: true,
+        tileGrid: new WMTSTileGrid({
+          origin: [-180, 90],
+          resolutions: this.getResolutions2(extent, tileSize).resolutions,
+          matrixIds: this.getResolutions2(extent, tileSize).matrixIds
         })
       })
-      map.addLayer(this.layer)
+      this.layer = new TileLayer({
+        className: this.type,
+        source: source
+      })
+      console.log(this.layer)
+      // map.addLayer(this.layer)
     },
     getResolutions2 (extent, tilesize) {
       let width = Extent.getWidth(extent)
       let height = Extent.getWidth(extent)
       let maxResolution = (width <= height ? height : width) / tilesize
-      let matrixIds = new Array(18)
-      let resolutions = new Array(18)
+      let matrixIds = new Array(19)
+      let resolutions = new Array(19)
       for (let i = 0; i < 19; ++i) {
         resolutions[i] = maxResolution / Math.pow(2, i)
         matrixIds[i] = i
@@ -147,6 +160,31 @@ export default {
         resolutions: resolutions,
         matrixIds: matrixIds
       }
+    },
+    /**
+     * @description: TileLayer + XYZ 方式加载天地图地图
+     * @param {type} 
+     * @return {type} 
+     */
+    loadMap3 () {
+      const map = this.$children[0].map
+      let layers = map.getLayers()
+      let existFlag = false
+      layers.forEach(item => {
+        if (item.className_ === this.mapType) {
+          item.setVisible(true)
+          existFlag = true
+        } else {
+          item.setVisible(false)
+        }
+      })
+      this.layer = new TileLayer({
+        className: this.type,
+        source: new XYZ({
+          url: `${this.url3[this.type]}&tk=76892c38deab957e65556e5824ca53e9`
+        })
+      })
+      map.addLayer(this.layer)
     }
   }
 }
