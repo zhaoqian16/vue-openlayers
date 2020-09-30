@@ -3,7 +3,7 @@
     <Map></Map>
     <div class="menu">
       <label class="label">选择标注类型后鼠标在地图上点击添加标注:</label>
-      <el-radio-group v-model="labelType" size="mini" @change="handleChange"> 
+      <el-radio-group v-model="labelType" size="mini"> 
         <el-radio-button label="vectorLabel">Vector Label</el-radio-button>
         <el-radio-button label="overlayLabel">Overlay Label</el-radio-button>
       </el-radio-group>
@@ -33,7 +33,7 @@ import { Point } from 'ol/geom';
     return {
       labelType: 'vectorLabel',
       vectorSource: null,
-      vectorLayer: null
+      vectorLayer: null,
     }
   },
   mounted() {
@@ -41,9 +41,11 @@ import { Point } from 'ol/geom';
     this.initListener()
   },
   methods: {
-    handleChange () {
-      console.log(this.labelType)
-    },
+    /**
+     * @description: 初始化矢量图层
+     * @param {type} 
+     * @return {type} 
+     */
     initVectorLayer () {
       this.vectorSource = new VectorSource()
       this.vectorLayer = new VectorLayer({
@@ -51,6 +53,11 @@ import { Point } from 'ol/geom';
       })
       this.$children[0].map.addLayer(this.vectorLayer)
     },
+    /**
+     * @description: 给地图添加点击事件
+     * @param {type} 
+     * @return {type} 
+     */
     initListener () {
       this.$children[0].map.on('click', e => {
         let point = e.coordinate
@@ -62,6 +69,11 @@ import { Point } from 'ol/geom';
         }
       })
     },
+    /**
+     * @description: 创建矢量标注的样式
+     * @param {type} 
+     * @return {type} 
+     */
     createLabelStyle (feature) {
       return new Style({
         image: new Icon({
@@ -71,7 +83,7 @@ import { Point } from 'ol/geom';
           anchorYUnits: 'pixels',
           offsetOrigin: 'top-right',
           opacity: 0.75,
-          src: '../../../static/icon/icon.png'
+          src: '../../../static/images/icon/icon.png'
 
         }),
         text: new Text({
@@ -84,39 +96,50 @@ import { Point } from 'ol/geom';
         })
       })
     },
+    /**
+     * @description: 添加矢量标注
+     * @param {type} 
+     * @return {type} 
+     */
     addVectorLabel (coordinate) {
       let feature = new Feature({
-        geometry: Point(coordinate),
+        geometry: new Point(coordinate),
         name: '标注点'
       })
       feature.setStyle(this.createLabelStyle(feature))
       this.vectorSource.addFeature(feature)
     },
+    /**
+     * @description: 添加覆盖标注
+     * @param {type} 
+     * @return {type} 
+     */
     addOverlayLabel (coordinate) {
       let template = `
         <div class="marker" title="标注点">
           <a class="address" href="#">标注点</a>
         </div>
       `
-      this.$refs.overlay.appendChild(template)
+      this.$refs.overlay.innerHTML = template
       let overlay = new Overlay({
         position: coordinate,
         positioning: 'center-center',
         element: this.$refs.overlay,
         stopEvent: false
       })
-      map.addOverlay(overlay)
+
+      this.$children[0].map.addOverlay(overlay)
       let text = new Overlay({
         position: coordinate,
-        element: this.$refs.overlay.children[0].children[0]
+        element: this.$refs.overlay.children[0]
       })
-      map.addOverlay(text)
+      this.$children[0].map.addOverlay(text)
     }
   }
 }
 </script>
 
-<style scoped>
+<style>
 .menu {
   position: absolute;
   top: 5px;
@@ -130,5 +153,28 @@ import { Point } from 'ol/geom';
   color: #fff;
   border-color:  #409EFF;
   border-radius: 5px;;
+}
+.marker {
+    width: 20px;
+    height: 20px;
+    border: 1px solid #088;
+    border-radius: 10px;
+    background-color: #0FF;
+    opacity: 0.5;
+}
+
+.address {
+    text-decoration: none;
+    color: #3b1302;
+    font-size: 1px;
+    font-weight: bold;
+    text-shadow: black 0.1em 0.1em 0.2em;
+    display: inline-block;
+    width: 50px;
+    height: 20px;
+    line-height: 20px;
+    margin-top: 20px;
+    margin-left: -15px;
+    text-align: center;
 }
 </style>
