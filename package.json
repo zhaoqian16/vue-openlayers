@@ -11,7 +11,9 @@
   },
   "dependencies": {
     "axios": "^0.20.0",
+    "core-js": "^2.6.9",
     "element-ui": "^2.13.2",
+    "fs-extra": "^9.0.1",
     "jsonp": "^0.2.1",
     "ol": "^6.4.3",
     "vue": "^2.5.2",

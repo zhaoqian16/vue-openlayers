@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-09-22 10:20:54
- * @LastEditTime: 2020-09-22 10:29:46
+ * @LastEditTime: 2020-09-27 09:18:53
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-openlayers\src\components\graphicDraw\drawGeometry.vue

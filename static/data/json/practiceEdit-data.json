@@ -1,0 +1,8 @@
+{
+  "type":"FeatureCollection",
+  "features": [
+    {"type":"Feature","id":"1","properties":{"name":"武汉五十三中", "city": "武汉"},"geometry":{"type":"Point","coordinates":[114.1947,30.5255]}},
+    {"type":"Feature","id":"2","properties":{"name":"武汉路", "city": "武汉"},"geometry":{"type":"MultiLineString","coordinates":[[[114.2218,30.5695],[114.2829,30.4912]]]}},
+    {"type":"Feature","id":"3","properties":{"name":"武汉五十三中", "city": "武汉"},"geometry":{"type":"MultiPolygon","coordinates":[[[[114.2757,30.5822],[114.3526,30.5879],[114.3608,30.5367],[114.3234,30.5187],[114.2826,30.553]]]]}}
+  ]
+}

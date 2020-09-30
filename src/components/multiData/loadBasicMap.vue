@@ -128,7 +128,7 @@ export default {
         source: new XYZ({
           url: 'http://server.arcgisonline.com/ArcGIS/rest/services/' + 'World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
         }),
-        attributions: 'Tiles &conpy; <a href="http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer">ArcGIS</a>'
+        attributions: 'Tiles &copy; <a href="http://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer">ArcGIS</a>'
       })
       this.$children[0].map.addLayer(this.onlineLayer)
       this.setMapView(proj.fromLonLat([-121.1, 47.5]), 7)
