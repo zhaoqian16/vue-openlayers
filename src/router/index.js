@@ -21,7 +21,19 @@ import DrawFeatures from '@/components/graphicDraw/drawFeatures'
 import FeaturesStyle from '@/components/graphicDraw/featuresStyle'
 import ModifyFeatures from '@/components/graphicDraw/modifyFeatures'
 import DrawFreehand from '@/components/graphicDraw/drawFreehand'
-import SaveFeatures from '@/components/graphicDraw/saveFeatures';
+import SaveFeatures from '@/components/graphicDraw/saveFeatures'
+import PracticeDelete from '@/components/graphicDraw/practiceDelete'
+import PracticeEdit from '@/components/graphicDraw/practiceEdit'
+import PracticeUpdate from '@/components/graphicDraw/practiceUpdate'
+
+import LoadWMTSMap from '@/components/OGCResources/loadWMTSMap'
+import LoadWMSMap from '@/components/OGCResources/loadWMSMap'
+import LoadWFSFeature from '@/components/OGCResources/loadWFSFeature'
+import LoadWCSMap from '@/components/OGCResources/loadWCSMap'
+
+import AddMarker from '@/components/mapMarker/addMarker'
+import AddPopup from '@/components/mapMarker/addPopup'
+import AddClusterLabels from '@/components/mapMarker/addClusterLabels'
 
 Vue.use(Router)
 
@@ -49,6 +61,16 @@ export default new Router({
     { path: '/featuresStyle', name: 'featuresStyle', component: FeaturesStyle},
     { path: '/modifyFeatures', name: 'modifyFeatures', component: ModifyFeatures},
     { path: '/drawFreehand', name: 'drawFreehand', component: DrawFreehand},
-    { path: '/saveFeatures', name: 'saveFeatures', component: SaveFeatures}
+    { path: '/saveFeatures', name: 'saveFeatures', component: SaveFeatures},
+    { path: '/practiceDelete', name: 'practiceDelete', component: PracticeDelete},
+    { path: '/practiceEdit', name: 'practiceEdit', component: PracticeEdit},
+    { path: '/practiceUpdate', name: 'practiceUpdate', component: PracticeUpdate},
+    { path: '/loadWMTSMap', name: 'loadWMTSMap', component: LoadWMTSMap},
+    { path: '/loadWMSMap', name: 'loadWMSMap', component: LoadWMSMap},
+    { path: '/loadWFSFeature', name: 'loadWFSFeature', component: LoadWFSFeature},
+    { path: '/loadWCSMap', name: 'loadWCSMap', component: LoadWCSMap},
+    { path: '/addMarker', name: 'addMarker', component: AddMarker},
+    { path: '/addPopup', name: 'addPopup', component: AddPopup},
+    { path: '/addClusterLabels', name: 'addClusterLabels', component: AddClusterLabels}
   ]
 })

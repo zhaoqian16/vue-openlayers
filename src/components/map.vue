@@ -1,7 +1,7 @@
 <!--
  * @Author: your name
  * @Date: 2020-09-10 09:16:53
- * @LastEditTime: 2020-09-10 09:46:27
+ * @LastEditTime: 2020-09-27 15:04:32
  * @LastEditors: Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \vue-openlayers\src\components\HelloWorld.vue
@@ -47,7 +47,8 @@ export default {
         ],
         view: new View({
           center: [0, 0],
-          zoom: 2
+          zoom: 2,
+          projection: 'EPSG:4326'
         })
       })
       document.getElementsByClassName('ol-attribution')[0].style.display = 'none'
