@@ -35,6 +35,10 @@ import AddMarker from '@/components/mapMarker/addMarker'
 import AddPopup from '@/components/mapMarker/addPopup'
 import AddClusterLabels from '@/components/mapMarker/addClusterLabels'
 
+import PrjTransformation from '@/components/others/prjTransformation'
+import MultiViewLinkage from '@/components/others/multiViewLinkage'
+import GeoLocation from '@/components/others/geoLocation';
+
 Vue.use(Router)
 
 export default new Router({
@@ -71,6 +75,9 @@ export default new Router({
     { path: '/loadWCSMap', name: 'loadWCSMap', component: LoadWCSMap},
     { path: '/addMarker', name: 'addMarker', component: AddMarker},
     { path: '/addPopup', name: 'addPopup', component: AddPopup},
-    { path: '/addClusterLabels', name: 'addClusterLabels', component: AddClusterLabels}
+    { path: '/addClusterLabels', name: 'addClusterLabels', component: AddClusterLabels},
+    { path: '/prjTransformation', name: 'prjTransformation', component: PrjTransformation},
+    { path: '/multiViewLinkage', name: 'multiViewLinkage', component: MultiViewLinkage},
+    { path: '/geoLocation', name: 'geoLocation', component: GeoLocation}
   ]
 })

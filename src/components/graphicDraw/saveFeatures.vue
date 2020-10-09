@@ -116,7 +116,7 @@ export default {
           }
         } else if (type === 'Polygon') {
           wgsCoordinates = coordinates[0].map(item => {
-            return prj.toLonLat(item, wgsCoordinates)
+            return prj.toLonLat(item, projection)
           })
           geom = { 
             type: "MultiPolygon",
