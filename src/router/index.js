@@ -37,7 +37,8 @@ import AddClusterLabels from '@/components/mapMarker/addClusterLabels'
 
 import PrjTransformation from '@/components/others/prjTransformation'
 import MultiViewLinkage from '@/components/others/multiViewLinkage'
-import GeoLocation from '@/components/others/geoLocation';
+import GeoLocation from '@/components/others/geoLocation'
+import SimulateGeolocation from '@/components/others/simulateGeolocation'
 
 Vue.use(Router)
 
@@ -78,6 +79,7 @@ export default new Router({
     { path: '/addClusterLabels', name: 'addClusterLabels', component: AddClusterLabels},
     { path: '/prjTransformation', name: 'prjTransformation', component: PrjTransformation},
     { path: '/multiViewLinkage', name: 'multiViewLinkage', component: MultiViewLinkage},
-    { path: '/geoLocation', name: 'geoLocation', component: GeoLocation}
+    { path: '/geoLocation', name: 'geoLocation', component: GeoLocation},
+    { path: '/simulateGeolocation', name: 'simulateGeolocation', component: SimulateGeolocation}
   ]
 })

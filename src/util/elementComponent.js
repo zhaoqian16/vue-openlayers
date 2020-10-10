@@ -11,6 +11,7 @@ import {
   Radio,
   RadioGroup,
   RadioButton,
+  Checkbox,
   Slider,
   InputNumber,
   Collapse,
@@ -29,6 +30,7 @@ Vue.use(Option)
 Vue.use(Radio)
 Vue.use(RadioGroup)
 Vue.use(RadioButton)
+Vue.use(Checkbox)
 Vue.use(Slider)
 Vue.use(InputNumber)
 Vue.use(Collapse),
