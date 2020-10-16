@@ -39,6 +39,10 @@ import PrjTransformation from '@/components/others/prjTransformation'
 import MultiViewLinkage from '@/components/others/multiViewLinkage'
 import GeoLocation from '@/components/others/geoLocation'
 import SimulateGeolocation from '@/components/others/simulateGeolocation'
+import HeatMap from '@/components/others/heatMap'
+import HotSpots from '@/components/others/hotSpots'
+import CreateCharts from '@/components/others/createCharts'
+import MilitaryPlotting from '@/components/others/militaryPlotting'
 
 Vue.use(Router)
 
@@ -80,6 +84,10 @@ export default new Router({
     { path: '/prjTransformation', name: 'prjTransformation', component: PrjTransformation},
     { path: '/multiViewLinkage', name: 'multiViewLinkage', component: MultiViewLinkage},
     { path: '/geoLocation', name: 'geoLocation', component: GeoLocation},
-    { path: '/simulateGeolocation', name: 'simulateGeolocation', component: SimulateGeolocation}
+    { path: '/simulateGeolocation', name: 'simulateGeolocation', component: SimulateGeolocation},
+    { path: '/heatMap', name: 'heatMap', component: HeatMap},
+    { path: '/hotSpots', name: 'hotSpots', component: HotSpots},
+    { path: '/createCharts', name: 'createCharts', component: CreateCharts},
+    { path: '/militaryPlotting', name: 'militaryPlotting', component: MilitaryPlotting}
   ]
 })

@@ -18,7 +18,8 @@ import {
   CollapseItem,
   Tabs,
   TabPane,
-  Dialog
+  Dialog,
+  ColorPicker
 } from 'element-ui'
 
 Vue.use(Row)
@@ -38,4 +39,5 @@ Vue.use(CollapseItem)
 Vue.use(Tabs)
 Vue.use(TabPane)
 Vue.use(Dialog)
+Vue.use(ColorPicker)
 Vue.prototype.$message = Message

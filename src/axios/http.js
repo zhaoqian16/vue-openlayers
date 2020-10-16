@@ -4,6 +4,7 @@ export function sendPOST(url, params) {
   return new Promise((resolve, reject) => {
     axios.post(url, params)
       .then(response => {
+        console.log(resolve)
         resolve(response.data)
       }, err => {
         reject(err)
